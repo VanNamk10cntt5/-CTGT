@@ -1,0 +1,27 @@
+//Cho mảng 1 chiều các số thực. Hãy viết hàm đệ quy tìm giá trị lớn nhất có trong mảng
+#include <iostream>
+using namespace std;
+
+// Hàm đệ quy tìm giá trị lớn nhất trong mảng
+double findMax(double arr[], int n) {
+    // Trường hợp cơ sở
+    if (n == 1) {
+        return arr[0];
+    }
+
+    // Trường hợp đệ quy
+    double max = findMax(arr, n - 1);
+    if (arr[n - 1] > max) {
+        max = arr[n - 1];
+    }
+    return max;
+}
+
+int main() {
+    double arr[] = {2.5, 7.8, 1.6, 9.2, 4.3, 5.1};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    double max = findMax(arr, n);
+    cout << "Gia tri lon nhat trong mang la: " << max << endl;
+
+    return 0;
+}

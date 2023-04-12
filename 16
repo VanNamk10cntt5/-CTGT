@@ -1,0 +1,26 @@
+//Cho mảng 1 chiều các số thực. Hãy viết hàm đệ quy tính tổng các giá trị dương có trong mảng
+#include <iostream>
+using namespace std;
+
+// Hàm đệ quy tính tổng các giá trị dương trong mảng
+double positiveSum(double arr[], int n) {
+    // Trường hợp cơ sở
+    if (n == 0) {
+        return 0;
+    }
+
+    // Trường hợp đệ quy
+    double sum = positiveSum(arr, n - 1);
+    if (arr[n - 1] > 0) {
+        sum += arr[n - 1];
+    }
+    return sum;
+}
+
+int main() {
+    double arr[] = {1.5, -2.7, 3.8, -4.6, 5.9, -6.1};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    double sum = positiveSum(arr, n);
+    cout << "Tong cac gia tri duong trong mang: " << sum << endl;
+    return 0;
+}

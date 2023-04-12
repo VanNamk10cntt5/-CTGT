@@ -1,0 +1,101 @@
+//Viết chương trình cài đặt hàng đợi bằng mảng. Nhập vào queue 6 phần tử  { 41, 23, 4, 14, 56, 1 }. Sau đó thêm vào phần tử {55} và loại bỏ phần {23}. In hàng đợi sau khi thêm và bỏ. 
+#include <iostream>
+using namespace std;
+
+#define MAX_SIZE 100
+
+class Queue {
+private:
+    int arr[MAX_SIZE];
+    int front, rear;
+
+public:
+    Queue() {
+        front = rear = -1;
+    }
+
+    bool isEmpty() {
+        return front == -1 && rear == -1;
+    }
+
+    bool isFull() {
+        return rear == MAX_SIZE - 1;
+    }
+
+    void enqueue(int val) {
+        if (isFull()) {
+            cout << "Queue is full!" << endl;
+            return;
+        }
+
+        if (isEmpty()) {
+            front = rear = 0;
+        } else {
+            rear++;
+        }
+
+        arr[rear] = val;
+    }
+
+    void dequeue() {
+        if (isEmpty()) {
+            cout << "Queue is empty!" << endl;
+            return;
+        }
+
+        if (front == rear) {
+            front = rear = -1;
+        } else {
+            front++;
+        }
+    }
+
+    int getFront() {
+        if (isEmpty()) {
+            cout << "Queue is empty!" << endl;
+            return -1;
+        }
+
+        return arr[front];
+    }
+
+    void printQueue() {
+        if (isEmpty()) {
+            cout << "Queue is empty!" << endl;
+            return;
+        }
+
+        for (int i = front; i <= rear; i++) {
+            cout << arr[i] << " ";
+        }
+
+        cout << endl;
+    }
+};
+
+int main() {
+    Queue q;
+    q.enqueue(41);
+    q.enqueue(23);
+    q.enqueue(4);
+    q.enqueue(14);
+    q.enqueue(56);
+    q.enqueue(1);
+
+    cout << "Queue after enqueue: ";
+    q.printQueue();
+
+    q.enqueue(55);
+    cout << "Queue after enqueue 55: ";
+    q.printQueue();
+
+    q.dequeue();
+    cout << "Queue after dequeue: ";
+    q.printQueue();
+
+    q.dequeue();
+    cout << "Queue after dequeue: ";
+    q.printQueue();
+
+    return 0;
+}

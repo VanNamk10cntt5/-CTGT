@@ -1,0 +1,20 @@
+//Cho mảng 1 chiều các số nguyên. Viết hàm đệ quy xuất mảng.
+#include <iostream>
+using namespace std;
+
+// Hàm đệ quy xuất mảng
+void xuatMang(int arr[], int n)
+{
+    if (n == 0) // Nếu chỉ số cuối cùng của mảng là 0 thì kết thúc đệ quy
+        return;
+    xuatMang(arr, n - 1); // Gọi đệ quy với mảng có độ dài giảm đi 1
+    cout << arr[n - 1] << " "; // In phần tử cuối cùng của mảng
+}
+
+int main()
+{
+    int arr[] = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    xuatMang(arr, n);
+    return 0;
+}

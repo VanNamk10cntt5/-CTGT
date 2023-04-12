@@ -1,0 +1,18 @@
+//Tính T(n) = 1 x 2 x 3 x … x n
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Nhap n: ";
+    cin >> n;
+
+    int T = 1;
+    for (int i = 1; i <= n; i++) {
+        T *= i;
+    }
+
+    cout << "T(" << n << ") = " << T << endl;
+
+    return 0;
+}

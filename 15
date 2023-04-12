@@ -1,0 +1,65 @@
+//Hãy khai báo cấu trúc dữ liệu của danh sách liên kết kép các số nguyên
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+    Node* prev;
+};
+
+int main() {
+    // Khởi tạo danh sách rỗng
+    Node* head = nullptr;
+
+    // Thêm một node có giá trị là 5 vào đầu danh sách
+    Node* newNode = new Node();
+    newNode->data = 5;
+    newNode->next = head;
+    newNode->prev = nullptr;
+    if (head != nullptr) {
+        head->prev = newNode;
+    }
+    head = newNode;
+
+    // Thêm một node có giá trị là 10 vào cuối danh sách
+    newNode = new Node();
+    newNode->data = 10;
+    newNode->next = nullptr;
+    Node* temp = head;
+    while (temp->next != nullptr) {
+        temp = temp->next;
+    }
+    temp->next = newNode;
+    newNode->prev = temp;
+
+    // Thêm một node có giá trị là 7 vào giữa danh sách
+    newNode = new Node();
+    newNode->data = 7;
+    temp = head;
+    while (temp->data != 5) {
+        temp = temp->next;
+    }
+    newNode->next = temp->next;
+    temp->next->prev = newNode;
+    temp->next = newNode;
+    newNode->prev = temp;
+
+    // In danh sách liên kết kép
+    temp = head;
+    while (temp != nullptr) {
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+    cout << endl;
+
+    // Giải phóng bộ nhớ
+    temp = head;
+    while (temp != nullptr) {
+        head = temp->next;
+        delete temp;
+        temp = head;
+    }
+
+    return 0;
+}

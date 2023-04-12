@@ -1,0 +1,51 @@
+//Cho mảng 1 chiều các số thực. Hãy viết hàm đệ quy sắp xếp các giá trị trong mảng tăng dần
+#include <iostream>
+using namespace std;
+
+// Function to swap two elements in an array
+void swap(float& a, float& b) {
+    float temp = a;
+    a = b;
+    b = temp;
+}
+
+// Recursive function to perform selection sort on an array
+void selectionSort(float arr[], int n) {
+    // Base case: If the array has only one element or is empty, it is already sorted
+    if (n <= 1) {
+        return;
+    }
+
+    // Find the index of the smallest element in the unsorted part of the array
+    int min_idx = 0;
+    for (int i = 1; i < n; i++) {
+        if (arr[i] < arr[min_idx]) {
+            min_idx = i;
+        }
+    }
+
+    // Swap the smallest element with the first element in the unsorted part of the array
+    swap(arr[0], arr[min_idx]);
+
+    // Recursively sort the remaining elements in the array
+    selectionSort(arr + 1, n - 1);
+}
+
+int main() {
+    float arr[] = { 3.5, 7.2, 1.0, 9.4, 5.8 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    cout << "Original array: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+
+    selectionSort(arr, n);
+
+    cout << "\nSorted array: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+
+    return 0;
+}

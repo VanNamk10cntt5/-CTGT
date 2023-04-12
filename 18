@@ -1,0 +1,42 @@
+//Cho mảng 1 chiều các số thực. Hãy viết hàm đệ quy kiểm tra mảng có thỏa mảng tính chất “toàn giá trị âm”
+#include <iostream>
+using namespace std;
+
+// Hàm đệ quy kiểm tra tính chất "toàn giá trị âm" của mảng
+bool allNegative(double arr[], int n) {
+    // Trường hợp cơ sở
+    if (n == 0) {
+        return true;
+    }
+
+    // Trường hợp đệ quy
+    bool check = allNegative(arr, n - 1);
+    if (arr[n - 1] >= 0) {
+        check = false;
+    }
+    return check;
+}
+
+int main() {
+    double arr1[] = {-1.5, -2.7, -3.8, -4.6, -5.9, -6.1};
+    int n1 = sizeof(arr1) / sizeof(arr1[0]);
+    bool check1 = allNegative(arr1, n1);
+    if (check1) {
+        cout << "Mang 1: Toan gia tri am" << endl;
+    }
+    else {
+        cout << "Mang 1: Khong toan gia tri am" << endl;
+    }
+
+    double arr2[] = {1.5, -2.7, 3.8, -4.6, 5.9, -6.1};
+    int n2 = sizeof(arr2) / sizeof(arr2[0]);
+    bool check2 = allNegative(arr2, n2);
+    if (check2) {
+        cout << "Mang 2: Toan gia tri am" << endl;
+    }
+    else {
+        cout << "Mang 2: Khong toan gia tri am" << endl;
+    }
+
+    return 0;
+}
